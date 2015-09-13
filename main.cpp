@@ -68,7 +68,7 @@ void mul(stack<int>& aStack)
  	aStack.pop();
 	int y = aStack.top();
 	aStack.pop();
-
+    
     aStack.push(x * y);
 }
 void div(stack<int>& aStack)
@@ -77,7 +77,7 @@ void div(stack<int>& aStack)
 	aStack.pop();
 	int y = aStack.top();
 	aStack.pop();
-
+    
     aStack.push(x / y); 
 }
 
