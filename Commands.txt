@@ -1,12 +1,12 @@
 1
+7
 3
 4
 MUL
-4
 2
+4
 DIV
 ADD
-7
 DIV
 ADD
 PRT
