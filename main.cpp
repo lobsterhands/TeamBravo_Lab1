@@ -22,9 +22,7 @@ int main ()
 	{
 		while (getline (myCommands, command))
 		{
-			if (strtol(command.c_str(), NULL, 0))
-				myStack.push(strtol(command.c_str(), NULL, 0));
-			else if (command == "ADD")
+	       if (command == "ADD")
 			    add(myStack);
 			else if (command == "SUB")
 				sub(myStack);
