@@ -1,20 +1,22 @@
+#include <stdlib.h>
 #include <iostream>
 #include <fstream>
-#include <vector>
 #include <stack>
 #include <string>
-#include <cstdlib>
+
 using namespace std;
 
-int add(stack< int, vector<int> >&);
-int sub(stack< int, vector<int> >&);
-int mul(stack< int, vector<int> >&);
-int div(stack< int, vector<int> >&);
+void add(stack<int>& theStack);
+void sub(stack<int>& theStack);
+void mul(stack<int>& theStack);
+void div(stack<int>& theStack);
+void prt(stack<int>& theStack);
+void stop();
 
-main ()
+int main ()
 {
 	string command;
-	stack< int, vector<int> > myStack;
+	stack<int> myStack;
 	ifstream myCommands("Commands.txt");
 	if (myCommands.is_open())
 	{
@@ -23,66 +25,70 @@ main ()
 			if (strtol(command.c_str(), NULL, 0))
 				myStack.push(strtol(command.c_str(), NULL, 0));
 			else if (command == "ADD")
-				myStack.push(add(myStack));
+			    add(myStack);
 			else if (command == "SUB")
-				myStack.push(sub(myStack));
+				sub(myStack);
 			else if (command == "MUL")
-				myStack.push(mul(myStack));
+				mul(myStack);
 			else if (command == "DIV")
-				myStack.push(div(myStack));
+				div(myStack);
+            else if (command == "PRT")
+                prt(myStack);
+            else if (command == "STOP")
+                stop();
+            else
+                myStack.push(strtol(command.c_str(), NULL, 0));
 		}
 		myCommands.close();
 	}
 
-	while (!myStack.empty())
-	{
-		cout << myStack.top() << endl;
-		myStack.pop();
-	}
-	
-	cout << "The stack is now empty.";
-	return 0;
+    return 0;
 }
 
-int add(stack< int, vector<int> >& aStack)
+//function declarations
+void add(stack<int>& aStack)
 {
-	int x, y;
-	x = aStack.top();
+	int x = aStack.top();
 	aStack.pop();
-	y = aStack.top();
+	int y = aStack.top();
  	aStack.pop();
-	cout << "Adding" << x << " and " << y << " and returning " << x+y << endl;
-	return x + y;
+
+    aStack.push(x + y);
 }
-int sub(stack< int, vector<int> >& aStack)
+void sub(stack<int>& aStack)
 {
-	int x, y;
-	x = aStack.top();
+    int	x = aStack.top();
 	aStack.pop();
-	y = aStack.top();
+	int y = aStack.top();
 	aStack.pop();
-	cout << "Subtracting " << y << " from " << x;
-	cout << " and returning " << x-y << endl;
-	return x - y;
+
+	aStack.push(x - y);
 }
-int mul(stack< int, vector<int> >& aStack)
+void mul(stack<int>& aStack)
 {
-	int x, y;
-	x= aStack.top();
+	int x= aStack.top();
  	aStack.pop();
-	y = aStack.top();
+	int y = aStack.top();
 	aStack.pop();
-	cout << "Multiplying " << x << " and ";
-	cout << y << " and returning " << x*y << endl; 
-	return x * y;
+
+    aStack.push(x * y);
 }
-int div(stack< int, vector<int> >& aStack)
+void div(stack<int>& aStack)
 {
-	int x, y;
-	x = aStack.top();
+	int x = aStack.top();
 	aStack.pop();
-	y = aStack.top();
+	int y = aStack.top();
 	aStack.pop();
-	cout << "Dividing " << x << " by " << y << " and returning " << x/y << endl;
-	return x/y; 
+
+    aStack.push(x / y); 
+}
+
+void prt(stack<int>& aStack)
+{
+    cout << aStack.top() << endl;
+}
+
+void stop()
+{
+    cin.ignore();
 }
