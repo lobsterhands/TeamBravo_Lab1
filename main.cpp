@@ -6,6 +6,7 @@
 
 using namespace std;
 
+// function prototypes
 void add(stack<int>& theStack);
 void sub(stack<int>& theStack);
 void mul(stack<int>& theStack);
